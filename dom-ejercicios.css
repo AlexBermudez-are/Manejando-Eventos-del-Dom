@@ -1,0 +1,428 @@
+:root {
+    --main-font:sans-serif;
+    --main-size:16px;
+    --main-color:#f7df1e;
+    --second-color:#222;
+    --main-model-color:rgba(247,222,30,0.85);
+    --second-model-color:rgba(34,34,34,0.85);
+    --container-width:1200px;
+}
+
+html{
+    box-sizing: border-box;
+    font-family: var(--main-font);
+    font-size: var(--main-size);
+    scroll-behavior: smooth;
+}
+
+*,
+*:before,
+*:after{
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/**** MENÚ DE HAMBURGUESAS******/
+
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+.header {
+    position: sticky;
+    top: 0;
+    padding: 1rem;
+    background-color: var(--main-color);
+    color: var(--second-color);
+    z-index: 998;
+}
+
+.header h1{
+    margin: 0;
+    text-align: center;
+}
+.section{
+    padding: 2rem;
+    padding-top: 4rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: var(--container-width);
+    min-height: 100vh;
+    text-align: center;
+}
+.panel{
+    position: fixed;
+    z-index: 997;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--second-model-color);
+    opacity: 0;
+    overflow-y: auto;
+    transition: transform .75s ease, opacity .75s ease;
+    transform: translate(0,-100%); /*<=== el primero es x y el segundo y*/
+    /* donde X maneja a los lados e Y maneja los lados superior e inferior */
+}
+.panel.is-active{
+    transform: translate(0,0);
+    opacity: 1;
+}
+.panel-btn{
+    position: fixed;
+    z-index: 999;
+    bottom: 1vh;
+    right: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+
+.menu{
+    width: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+}
+.menu a{
+    padding: 2rem;
+    width: inherit;
+    display: block;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color:var(--main-color);
+    transition: all 0.3s ease;
+}
+.menu a:hover{color:var(--second-color);
+    background-color: var(--main-model-color);
+}
+
+/**** ESTILOS DE TECLADO *****/
+
+.stage{
+    display: flex;
+    min-height: 50vh;
+    background-color: rgb(82, 55, 82);
+}
+.ball{
+    z-index: 990;
+    margin: auto;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(133, 241, 255);
+}
+
+/********** SCROLL TOP  BTN ***************************/
+
+.btn_top_scroll{
+    font-size: 2.5rem;
+    position: fixed;
+    z-index: 997;
+    bottom: 1vh;
+    right: calc(4.80rem + 1vw);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    outline: none;
+    background-color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+}
+.btn_top_scroll:hover{
+    background-color: black;
+    color: var(--main-color);
+}
+.hidden{
+    visibility: hidden;
+    opacity: 0;
+}
+
+/***** BTN DARK_MODE *******/
+
+.btn_left_dark_mode{
+    font-size: 1.7rem;
+    position: fixed;
+    z-index: 997;
+    bottom: 1vh;
+    left: 1vw;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    border: 0;
+    outline: none;
+    cursor: pointer;
+}
+.btn_left_dark_mode:hover{
+    background-color: black;
+}
+.dark-mode{
+    background-color: var(--second-color);
+    color: var(--main-color);
+}
+
+/* Conexion de Internet */
+
+.online,
+.offline{
+    position: sticky;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    background-color: green;
+    color: white;
+    width: 100%;
+}
+.offline{
+    background-color: red;
+}
+/*tarjetas del filtro*/
+
+.cards{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+.card{
+    background-color: rgb(27, 27, 27);
+    color: var(--main-color);
+    transition: all 0.1s ease-out;
+}
+.card img{
+    width: 100%;
+    height: auto;
+}
+.card figcaption{
+    padding: 1rem;
+}
+.filter{
+    visibility: hidden;
+    opacity: 0;
+    order: 1;
+}
+/*Sorteo*/
+
+.participantes li{
+    list-style: none;
+    margin-right: 50px;
+    padding: 10px;
+}
+/*Carrusel de Imagenes*/
+.carrusel{
+    position: relative;
+    width: 80%;
+    margin: 1rem auto;
+    text-align: center;
+}
+.carrusel-body{
+    position: relative;
+    height: 600px;
+}
+.carrusel-img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    background-color: rgb(0, 0, 0);
+    color: rgb(89, 255, 241);
+}
+.carrusel-img figcaption{
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+.carrusel-img p{
+    font-size: 1.5rem;
+}
+.carrusel-img img{
+    width: inherit;
+    height: inherit;
+    object-fit: cover;/**<=== ajusta el tamaño de la imagen para cubrir todo el cuerpo*/
+    object-position: /*X*/ 50% /*Y*/20%;/* X es horizontal Y es vertical*/
+    /*object-fit: contain;<=== ajusta la imagen de tamaño original al cuerpo del padre*/
+}
+.carrusel-img.is-active{
+    opacity: 1;
+    visibility: visible;
+}
+.carrusel-btns{
+    display: flex;
+    position: absolute;
+    top: 40%;
+    justify-content: space-between;
+    width: 100%;
+}
+.carrusel-btns a{
+    display: block;
+    width: 5rem;
+    height: 5rem;
+    text-decoration: none;
+    font-size: 60px;
+    font-weight: bold;
+    background-color: transparent;
+    color: red;
+    transition: all 1s ease;
+    backdrop-filter: blur(50px);
+    border-radius: 50%;
+}
+.carrusel-btns a:hover{
+    color: #3300ff;
+}
+/*Nuevo Menú*/
+@media screen and (min-width:1024px){
+    body{
+        display: grid;
+        grid-template-columns: 98% 2%;
+        grid-template-rows: 4rem auto;
+        grid-template-areas: 
+        "header header"
+        "main   panel"
+        ;
+    }
+    main{
+        grid-area: main;
+    }
+    header{
+        grid-area: header;
+    }
+    .panel{
+        grid-area: panel;
+        align-self: flex-start;
+        position: sticky;
+        top: 4rem;
+        visibility: hidden;
+        opacity: 0;
+        transform: translate(100%,0);
+        width: 200px;
+    }
+    .panel.is-active{
+        visibility: visible;
+        opacity: 1;
+        transform: translate(0,0);
+    }
+    .menu{
+        text-align: right;
+        background-color: rgb(36, 106, 238);
+    }
+    .menu a{
+        font-size: 1.1rem;
+        padding: .95rem;
+    }
+    .menu a:hover{
+        background-color: rgb(14, 77, 194);
+        color: white;
+    }
+    .ScrollSpy{
+        background-color: rgb(14, 77, 194);
+        color: white;
+    }
+    .btn_top_scroll{
+        right: initial;
+        left: calc(4.25rem + 1vw);
+    }
+    .panel-btn.is-active{
+        opacity: 0;
+        visibility: hidden;
+    }
+    
+}
+/*Video Inteligente*/
+.video1,
+    .video2{
+        width: 80%;
+        height: 600px;
+        outline: none;
+    }
+/*Formulario*/
+.contact{
+    --form-ok-color:  #4caf50;
+    --form-error-color:  #f44336;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+.contact>*{
+    padding: 0.5rem;
+    margin: 1rem auto;
+    width: 100%;
+    display: block;
+}
+.contact textarea{
+    resize: none;
+}
+.contact legend,
+.contact-from-response{
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+.contact input,
+.contact textarea{
+    font-size: 1rem;
+    font-family: sans-serif;
+}
+.contact input[type="submit"]{
+    width: 50%;
+    cursor: pointer; /*agrega la mano xd*/
+    font-weight: bold;
+}
+.contact [required]:valid/*<==accede a los hijos que se le especifique*/{
+    border: thin solid var(--form-ok-color);
+    outline: none;
+}
+.contact [required]:invalid{
+    border: thin solid var(--form-error-color);
+}
+.contact-error{
+    margin-top: -1rem;
+    font-size: 80%;
+    background-color: var(--form-error-color);
+    color: white;
+    transition: all 800ms ease;
+}
+.contact-error.is-active{
+    display: block;
+    animation: show-message 1s 1 normal 0s ease-out both;
+}
+.none{
+    display: none;
+}
+@keyframes show-message{
+    0%{
+        opacity: 0;
+        visibility: hidden;
+    }
+    100%{
+        opacity: 1;
+        visibility: visible;
+    }
+}
